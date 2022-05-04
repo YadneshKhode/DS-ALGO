@@ -1,0 +1,34 @@
+https://practice.geeksforgeeks.org/problems/longest-consecutive-subsequence2449/1#
+class Solution
+{   
+    // arr[] : the input array
+    // N : size of the array arr[]
+    
+    //Function to return length of longest subsequence of consecutive integers.
+	static int findLongestConseqSubseq(int arr[], int n)
+	{
+	   // add your code here
+	   int maxCount = 0;
+	   int track = -1;
+	   
+	   HashSet<Integer> hm = new HashSet<>();
+	   
+	   for(int i = 0; i < n ; i++){
+	       hm.add(arr[i]);
+	   }
+	   
+	     for(int i = 0; i < n ; i++){
+	        int count = 0;
+	        track = arr[i];
+	        while(hm.contains(track-1)){
+	            track--;
+	        }
+	           while(hm.contains(track)){
+	                count++;
+	                track++;
+	           }
+	           if(count > maxCount) maxCount = count;
+	        }
+	     return maxCount;
+	     }
+	}

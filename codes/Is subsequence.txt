@@ -1,0 +1,23 @@
+https://leetcode.com/problems/is-subsequence/
+
+class Solution {
+    public boolean isSubsequence(String s, String t) {
+        
+        if(s.length() == 0) return true;
+        
+       int sIndex = 0, tIndex = 0;
+        
+        while(tIndex < t.length()){
+            if(t.charAt(tIndex) == s.charAt(sIndex)){
+                tIndex++;
+                sIndex++;
+                if(s.length() == sIndex) return true;
+            }
+            else{
+                tIndex++;                
+            }
+
+        }
+        return false;
+    }
+}

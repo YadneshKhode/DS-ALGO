@@ -1,0 +1,27 @@
+public class Solution {
+	public static void main(String args[]) {
+		int arr[] = { -2, -3, 4, 1, 2, -1, -5, -3 };
+		System.out.println(kadane(arr));
+	}
+
+	public static int kadane(int[] arr) {
+		int current = arr[0];
+		int max = arr[0];
+
+		for (int i = 1; i < arr.length; i++) {
+			// sol for handling all negative no 
+			// current = Math.max(current + arr[i], arr[i]);
+			// max = Math.max(current, max);
+
+			// normal solution
+			current = current + arr[i];
+
+			if(current < 0) current =0;
+			if(max < current){
+				max = current;
+			}
+		}
+
+		return max;
+	}
+}

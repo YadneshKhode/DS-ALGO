@@ -1,0 +1,71 @@
+https://practice.geeksforgeeks.org/problems/boolean-parenthesization5610/1#
+
+class Solution{
+    static int countWays(int N, String S){
+        int i = 0;
+        int j = S.length() - 1;
+        int isTrue = 1;
+        
+        int[][][] dp = new int[S.length() + 1][S.length() + 1][2];
+        
+        for(int[][] row: dp){
+            for(int[] col: row){
+                Arrays.fill(col, -1);
+            }
+        }
+        
+        int ways = solve(S, i, j, isTrue, dp);
+        return ways;
+    }
+    
+    static int solve(String s, int i, int j, int isTrue, int[][][] dp){
+        
+        if(i > j){
+            return 0;
+        }
+        
+        if(i == j){
+            if(isTrue == 1){
+                return s.charAt(i) == 'T' ? 1 : 0;
+            } else {
+                return s.charAt(i) == 'F' ? 1 : 0;
+            }
+        }
+        
+        if(dp[i][j][isTrue] != -1){
+            return dp[i][j][isTrue];
+        }
+
+        int ans = 0;
+        
+        for(int k = i + 1; k < j; k = k + 2){
+            
+            int leftTrue = solve(s, i, k - 1, 1, dp);
+            int leftFalse = solve(s, i, k - 1, 0, dp);
+            int rightTrue = solve(s, k + 1, j, 1, dp);
+            int rightFalse = solve(s, k + 1, j, 0, dp);
+
+            if(s.charAt(k) == '^'){
+                if(isTrue == 1){
+                    ans = ans + (leftTrue * rightFalse) + (leftFalse * rightTrue);
+                } else {
+                    ans = ans + (leftTrue * rightTrue) + (leftFalse * rightFalse);
+                }
+            } else if (s.charAt(k) == '&'){
+                if(isTrue == 1){
+                    ans = ans + (leftTrue * rightTrue);
+                } else {
+                    ans = ans + (leftTrue * rightFalse) + (leftFalse * rightTrue) + (leftFalse * rightFalse);
+                }
+            } else if (s.charAt(k) == '|'){
+                if(isTrue == 1){
+                    ans = ans + (leftTrue * rightFalse) + (leftFalse * rightTrue) + (leftTrue * rightTrue);
+                } else {
+                    ans = ans + (leftFalse * rightFalse);
+                }
+            }
+        }
+        
+        return dp[i][j][isTrue] = ans % 1003; // % 1003 is mentioned in problem description in GFG
+    }
+}

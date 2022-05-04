@@ -1,0 +1,65 @@
+//https://practice.geeksforgeeks.org/problems/count-occurences-of-anagrams5839/1#
+//https://www.youtube.com/watch?v=MW4lJ8Y0xXk&list=PL_z_8CaSLPWeM8BDJmIYDaoQ5zuwyxnfj&index=5
+
+
+
+/*
+approach:
+created 26 size array to keep track of frequency of alphabets in the pattern(pat)
+used set to determine unique characters in pattern initialised count with set size
+
+1) until window size(k) is reached keep incrementing end pointer because the anagrams size will be same as the pattern
+2) whenever we increment end pointer we have to decrement its frequency
+3) if the frequency for 1 character becomes 0 it means we have received adequate amount of that character(same amount of character in pattern)
+4) so we decrement the count by 1
+5) when the window size is reached there are 2 possibilities either we have found our anagram or not
+6) if count = 0 then we have found our anagram because we decremented count whenever frequency of particular character had reached 0 so when all characters frequency was 0 
+it means all characters in pattern are now present in the current window hence we increment our result variable by 1
+7)  now its time to slide window but before sliding we have to check if the start pointer is pointing to character that is present in the pattern if not then we can
+increment without any worries as it wont affect anything but if it points to character present in pattern then we have to increment its frequency as we are removing
+it from window and now we lack that particular character to form our anagram and if the frequency has become 1 that means it was 0 earlier so we have to increment count as well
+because count keep tracks of unique characters so we increment count whenever the frequency becomes 1 from 0 so next time when we increment the frequency from 1 to 2 we wont increment
+count because we need unique characters
+
+
+We need to allow frequency to become negative and whenever it hits 0 we have to decrement count frequency going negative means we have excess of that particular character
+in the window
+
+*/
+class Solution {
+
+    int search(String pat, String txt) {
+        // code here
+        int freq[] = new int[26];
+        Arrays.fill(freq,0);
+        final int k = pat.length();
+        int start = 0, end = 0, result = 0, count = 0;
+        
+       HashSet<Character> set = new HashSet<>();
+        for(int i = 0; i < pat.length(); i++){
+            freq[pat.charAt(i) - 97] += 1;
+            set.add(pat.charAt(i));
+        }
+       count = set.size();
+        while(end < txt.length()){
+           if(set.contains(txt.charAt(end))){
+               freq[txt.charAt(end) - 'a'] -= 1;
+               if(freq[txt.charAt(end) - 'a'] == 0) count--;
+           }
+            
+            if(end-start+1 < k){
+                 end++;
+            }
+            else if(end-start+1 == k){
+                if(count == 0) result++;
+                if(set.contains(txt.charAt(start))){
+                    freq[txt.charAt(start) - 97] += 1;
+                    if(freq[txt.charAt(start) - 97] == 1) count++;
+                }
+                start++;
+                end++; 
+            }
+        }
+        return result;
+    }
+}

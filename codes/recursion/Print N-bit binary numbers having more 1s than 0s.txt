@@ -1,0 +1,40 @@
+// https://practice.geeksforgeeks.org/problems/print-n-bit-binary-numbers-having-more-1s-than-0s0252/1#
+import java.util.*;
+
+public class Main {
+    
+    static List<String> list = new ArrayList<>();
+    public static void main(String args[]) {
+       String arr[] = generateParenthesis(3);
+       for (String string : arr) {
+           System.out.println(string);
+       }
+    }
+
+    public static String[] generateParenthesis(int n) {
+        String output = "";
+        int zero = 0;
+        int one = 0;
+        solve1(output, zero, one, n);
+        String[] strings = list.stream().toArray(String[]::new);
+        return strings;
+    }
+    public static void solve1(String output, int zero, int one, int n){
+        if(output.length() == n){
+            list.add(output);
+            return;
+        }
+        String s1 = output;
+        String s2 = output;
+        if(one > zero){
+            s2 += "0";
+            int tempZero = zero + 1;
+            solve1(s2, tempZero, one, n);
+        }
+        s1 += "1";
+       int tempOne = one + 1;
+        solve1(s1, zero, tempOne, n); 
+
+
+    }
+}

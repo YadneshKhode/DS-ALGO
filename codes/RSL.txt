@@ -1,0 +1,72 @@
+// Input: 43018
+Output:  40000 + 3000 + 10 + 8
+
+ splitter(int n){
+	int place =1;
+	StringBuilder sb = new StringBuilder();
+	while(n>0){
+		int remainder = n % 10;
+		if( remainder == 0) place = place*10 ;n = n/10;
+		else{
+			int s = place * remainder;
+			sb.append(s); // 8 +  10 + 3000 + 40000 
+			if(! n / 10 ==  0) sb.append(" + ");
+			place = place * 10;
+			n = n/10;
+		}		
+	}
+
+
+Input: [1, 2, 3, 4, 9, 12, 16]
+Output: 3
+
+function countOfNums(int arr[]){
+	int count=0;
+boolean powers[] = fillArray(arr)
+	for(int i =0;i < arr.length;i++){
+		if(powers[arr[i]] == true){count++} 
+	}
+	return count;
+} 
+
+function fillArray( int arr[]){
+	int max = -1;
+	for(int i =0;i<arr.length;i++){
+		if(arr[i] > max){
+			max = arr[i];
+		}
+	}
+
+boolean powers[] = new boolean [max+1];
+int count = 2;
+
+for(int i =0;i<powers.length;i++){
+	arr[i] = false;
+}
+arr[1] = true;
+
+	while(count < powers.length){
+	powers[count] = true;
+	count = count *2;
+	}
+	
+a a a b b d c 
+26 
+a = 3
+b = 2
+c = 1
+d = 1
+
+function firstUniqueCharacter(String s){
+	
+	int frequency[] = new int[26];
+	for(int i=0;i<s.length;i++){
+		frequency[arr[i] - 'a'] += 1; // 3 2 1 1 
+	}
+	for(int i=0;i<s.length;i++){
+	if(frequency[arr[i] - 'a'] == 1){
+		print(arr[i]);
+		break;
+	}
+	}
+}

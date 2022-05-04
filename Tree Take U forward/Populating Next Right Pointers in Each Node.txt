@@ -1,0 +1,56 @@
+Same code works for both questions-
+
+problem-1 - https://leetcode.com/problems/populating-next-right-pointers-in-each-node/
+problem-2 - https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/
+solution - https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/discuss/1800833/Java-simple-solution-with-explanation
+
+
+/*
+// Definition for a Node.
+class Node {
+    public int val;
+    public Node left;
+    public Node right;
+    public Node next;
+
+    public Node() {}
+    
+    public Node(int _val) {
+        val = _val;
+    }
+
+    public Node(int _val, Node _left, Node _right, Node _next) {
+        val = _val;
+        left = _left;
+        right = _right;
+        next = _next;
+    }
+};
+*/
+
+class Solution {
+    public Node connect(Node root) {
+          if(root == null) return null;
+        Deque<Node> deque = new ArrayDeque<>();
+        
+        if(root.right != null) deque.addLast(root.right);
+        if(root.left != null) deque.addLast(root.left);
+       
+        Node prev = null;
+        
+        while(!deque.isEmpty()){
+            int size = deque.size();
+            while(size != 0){
+                size--;
+                Node curr = deque.removeFirst();
+                curr.next = prev;
+                if(curr.right != null) deque.addLast(curr.right);
+                if(curr.left != null) deque.addLast(curr.left);
+                prev = curr;
+            }
+            prev = null;
+        }
+        
+        return root;
+    }
+}

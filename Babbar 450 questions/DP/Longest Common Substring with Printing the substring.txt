@@ -1,0 +1,63 @@
+class Solution{
+    int longestCommonSubstr(String s1, String s2, int x, int y){
+        // code here
+    {
+        // your code here
+        int[][]dp = new int[x+1][y+1];
+        int max = Integer.MIN_VALUE;
+        int maxi = -1;
+        int maxj = -1;
+        
+        for(int i =0; i < x + 1;i++){
+            for(int j = 0; j<y+1;j++){
+                if(i == 0 || y == 0){
+                   dp[x][y] = 0;
+                }
+            }
+        }
+        
+         for(int i = 1; i < x + 1; i++){
+            for(int j = 1; j < y + 1; j++){
+                 if(s1.charAt(i-1) == s2.charAt(j-1)){
+                    dp[i][j] = 1 + dp[i-1][j-1];
+                 }
+                 else{
+                     dp[i][j] = 0;
+                 }
+            }
+         }
+        System.out.println();
+          for(int i = 0; i < x + 1; i++){
+            for(int j = 0; j < y + 1; j++){
+                if(dp[i][j] > max) {
+                    max = dp[i][j];
+                    maxi = i;
+                    maxj = j;
+                    // System.out.println("dp[i][j] = "+ dp[i][j]);
+                    // System.out.println("i = "+i);
+                    // System.out.println("j = "+j);
+                    // System.out.println("max = "+ max);
+                    // System.out.println("maxi = "+ maxi);
+                    // System.out.println("maxj = "+ maxj);
+                }
+                System.out.print(dp[i][j] +" ");     
+            }
+            System.out.println();
+          }
+         
+         int i = maxi,j = maxj;
+        // System.out.println("lastmaxi = "+maxi);
+        // System.out.println("lastmaxj = "+ maxj);
+         StringBuilder ans = new StringBuilder();
+         while(dp[i][j] != 0){
+             ans.append(s1.charAt(i-1));
+             i--;
+             j--;
+         }
+         
+        // System.out.println(ans.reverse().toString());
+        return max;
+        }
+    }
+    
+}

@@ -1,0 +1,9 @@
+int start = 0
+int end = 1;
+
+while(target > arr[end]){
+	start = end;
+	end = end << 1; ( multiply by 2)
+}
+
+BinarySearch(arr,start,end,target)

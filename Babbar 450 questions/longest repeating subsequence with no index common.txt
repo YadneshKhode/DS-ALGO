@@ -1,0 +1,32 @@
+class Solution
+{
+    public int LongestRepeatingSubsequence(String s1)
+    {
+        // code here
+        String s2 = s1;
+        int x = s1.length();
+        int y = s2.length();
+        int dp[][] = new int [x+1][y+1];
+        for(int i =0; i <= x; i++){
+            for(int j = 0; j <= y; j++){
+                dp[i][j] = -1;
+            }
+        } 
+        return lcs(s1,s2,dp,x,y);
+    }
+    public int lcs(String s1, String s2, int[][]dp, int x, int y){
+        
+        if(dp[x][y] != -1) return dp[x][y];
+        
+        if(x == 0 || y == 0){
+            dp[x][y] = 0;
+        }
+        else if(s1.charAt(x-1) == s2.charAt(y-1) && (x != y)){
+            dp[x][y] = 1 + lcs(s1,s2,dp,x-1,y-1);
+        }
+        else{
+            dp[x][y] = Math.max(lcs(s1,s2,dp,x-1,y),lcs(s1,s2,dp,x,y-1));
+        }
+        return dp[x][y];
+    }
+}

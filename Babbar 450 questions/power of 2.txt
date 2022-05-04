@@ -1,0 +1,13 @@
+class Solution {
+       public boolean isPowerOfTwo(int n) {
+		if(n==0) return false;
+        if(n==1) return true;
+        System.out.println(Math.floor(log2(n)));
+        System.out.println(Math.ceil(log2(n)));
+		return (Math.floor(log2(n)) == Math.ceil(log2(n))) ? true : false;
+	}
+
+	private double log2(int n) {
+	    return (Math.log10(n) / Math.log10(2));
+    }
+}

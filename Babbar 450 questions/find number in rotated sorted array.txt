@@ -1,0 +1,293 @@
+//my code
+
+More Intuitive approach.
+
+
+
+IF THE WHOLE ARRAY IS SORTED FLAG IS 0
+IF ARRAY IS SORTED ON LEFT SIDE OF MID THEN FLAG IS 1
+IF ARRAY IS SORTED ON RIGHT SIDE OF MID THEN FLAG IS 2
+
+
+
+class Solution {
+    public int search(int[] nums, int target) {
+        
+        
+        int ans = -1;
+        int n = nums.length;
+        int low = 0;
+        int high = n - 1;
+       
+        
+        while(low <= high){
+            int flag = 0;
+            
+            int mid = low + ((high - low) >> 1);
+            
+            if(target == nums[mid]) {ans = mid; break;}
+            
+            if(nums[low] <= nums[mid] && nums[mid] <= nums[high]){
+                flag = 0;
+            }
+            else if(nums[low] <= nums[mid]){
+                flag = 1;
+            }
+            else if(nums[mid] <= nums[high]){
+                flag = 2;
+            }
+
+//NORMAL BINARY SEARCH
+            if(flag == 0){
+                if(target <= nums[mid]){
+                    high = mid - 1;
+                }
+                else{
+                    low = mid + 1;
+                }
+            }
+
+// CHECK IF TARGET LIES IN THIS RANGE  IS YES THEN HIGH = MID -1 ELSE TARGET LIES IN ANOTHER PART LOW = MID + 1
+            else if(flag == 1){
+                if(target <= nums[mid] &&  target >= nums[low]){
+                    high = mid - 1;
+                }
+                else{
+                    low = mid + 1;
+                }
+            }
+//CHECK IF TARGET LIES IN THIS RANGE  IS YES THEN LOW = MID + 1 ELSE TARGET LIES IN ANOTHER PART HIGH = MID -1
+
+            else if(flag == 2){
+                if(target >= nums[mid] && target <= nums[high]){
+                    low = mid + 1;
+                }
+                else{
+                    high = mid - 1;
+                }
+            }
+        }
+        return ans;
+    }
+}
+
+
+
+
+
+#2 APPROACH
+
+// FIND PIVOT ELEMENT AND USING THAT CALL BINARY SEARCH ON 0 TO PIVOT -1 AND PIVOT TO LENGTH OF ARRAY -1 
+
+
+
+
+
+
+
+
+
+// MY OTHER CODE.
+
+
+class Solution {
+    public int search(int[] nums, int target) {
+        int ans = -1;
+        int n = nums.length;
+        if(n == 1){
+            if(target == nums[0]) return 0 ;
+            return -1;
+        }
+        int low = 0;
+        int high = n - 1;
+        int pivot = -1;
+        
+        pivot = calcPivot(nums,low,high);
+        System.out.println("pivot"+pivot);
+        if(pivot == 0){
+            ans = binSearch(nums,pivot,high,target);
+        }
+        else{
+            ans = Math.max(binSearch(nums,pivot,high,target),binSearch(nums,0,pivot-1,target));
+        }
+       return ans;
+    }
+    public static int calcPivot(int []nums,int start, int end){
+        
+        int pivotElement = -1;
+        int n = nums.length;
+        
+       
+       while(start <= end){
+            int mid = start + ((end - start) >> 1);
+            int prev = (mid - 1 + n)%n;
+            int next = (mid + 1)%n;
+             if(nums[start] < nums[end]){
+                 return start;
+             }
+            if(nums[mid] < nums[prev] && nums[mid] < nums[next]){
+                pivotElement = mid;
+                break;
+            }
+            else if(nums[start] <= nums[mid]){
+                start = mid + 1;
+            }
+            else if(nums[mid] <= nums[end]){
+                end = mid - 1;
+            }
+       }
+        return pivotElement;
+    }
+    public static int binSearch(int[]nums,int start, int end,int target){
+            int ans = -1;
+            while(start <= end){
+                int mid = start + ((end - start) >> 1);
+                System.out.println("start = "+start);
+                System.out.println("end = "+end);
+                System.out.println("mid = "+mid);
+                if(target == nums[mid]){
+                 ans = mid;
+                 break;
+                }
+                
+                if(nums[mid] < target){
+                    start  = mid + 1; 
+                }
+                else{
+                    end = mid - 1;
+                }
+            }
+        return ans;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class Solution {
+    public int search(int[] nums, int target) {
+        
+        int ans = -1;
+        int n = nums.length;
+        int low = 0;
+        int high = n - 1;
+        
+        while(low <= high){
+            int flag = 0;
+            
+            int mid = low + ((high - low) >> 1);
+            
+            if(target == nums[mid]) {ans = mid; break;}
+            
+            if(nums[low] < nums[high]){
+                flag = 0;
+            }
+            else if(nums[low] <= nums[mid]){
+                flag = 1;
+            }
+            else if(nums[mid] <= nums[high]){
+                flag = 2;
+            }
+            if(flag == 0){
+                if(target <= nums[mid]){
+                    high = mid - 1;
+                }
+                else{
+                    low = mid + 1;
+                }
+            }
+            else if(flag == 1){
+                if(target <= nums[mid] &&  target >= nums[low]){
+                    high = mid - 1;
+                }
+                else{
+                    low = mid + 1;
+                }
+            }
+            else if(flag == 2){
+                if(target >= nums[mid] && target <= nums[high]){
+                    low = mid + 1;
+                }
+                else{
+                    high = mid - 1;
+                }
+            }
+        }
+        return ans;
+    }
+}
+
+
+
+// class Solution {
+//     public int search(int[] nums, int target) {
+        
+//         int ans = -1;
+//         int n = nums.length;
+//         int low = 0;
+//         int high = n - 1;
+//         int min = -1;
+        
+        
+//         while(low <= high){
+            
+//             int mid = low + ((high-low) >> 1);
+            
+//             System.out.println("middle = "+mid);
+            
+//             int prev = (mid - 1 + n) % n;
+//             int next = (mid + 1) % n;
+            
+//             if(nums[mid] <= nums[prev] && nums[mid] <= nums[next]){
+//               System.out.println("min = "+min);
+//                 min = mid;
+//                 break;
+//             }
+            
+//             else if(nums[mid] > nums[high]){
+//                 low = mid + 1;
+//             }
+//             else {
+//                 high = mid - 1;
+//             }
+//         }
+//         ans = Math.max(binSearch(nums,0,min-1,target),binSearch(nums,min,n-1,target));
+//         return ans;
+//     }
+//     public int binSearch(int []nums, int start, int end, int target){
+//         while(start <= end){
+            
+//             int mid = start + ((end-start) >> 1);
+            
+//             System.out.println("mid = "+mid);
+//             System.out.println("start = "+start);
+//             System.out.println("end = "+end);
+            
+//             if(nums[mid] == target){
+//                 return mid;
+//             }
+//             else if(nums[mid] < target){
+//                 start = mid + 1;
+//             }
+//             else{
+//                 end = mid - 1;
+//             }
+            
+//         }
+//         return -1;
+//     }
+// }
+
+
+

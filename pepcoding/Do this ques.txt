@@ -1,0 +1,7 @@
+reverse a linked list in pairs 
+reverse a linked list in k pairs
+
+detect a loop in linked list and also give its position
+
+delete a node in linked list
+delete a node in linked list when head is not given 

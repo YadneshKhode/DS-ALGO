@@ -1,0 +1,28 @@
+https://leetcode.com/problems/search-insert-position/
+
+class Solution {
+    public int searchInsert(int[] nums, int target) {
+        int n = nums.length;
+        int start = 0;
+        int end = n - 1;
+        int ans = -1;
+        
+        
+        while(start <= end){
+            int mid = start + ((end-start) >> 1);
+            System.out.print(mid);
+            if(target == nums[mid]){
+                return mid;
+            }
+            
+           if(target < nums[mid]){
+               end = mid - 1;
+           }   
+           else{
+               start = mid + 1; 
+           } 
+            ans = end + 1;
+        }
+        return ans;
+    }
+}

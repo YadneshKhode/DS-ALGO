@@ -1,0 +1,55 @@
+//https://www.pepcoding.com/resources/online-java-foundation/2d-arrays/spiral-display-official/ojquestion
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws Exception {
+        
+        Scanner sc = new Scanner(System.in);
+        
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        
+        String direction = "down";
+        
+        int arr[][] = new int[n][m];
+        
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < m; j++){
+                arr[i][j] = sc.nextInt();
+            }
+        }
+        int cnt = 0;
+        int minc = 0, minr = 0, maxc = m - 1, maxr = n - 1;
+         while(cnt < n*m){
+        for(int i = minr; i <= maxr && cnt < n*m; i++){
+            System.out.println(arr[i][minc]);
+            cnt++;
+        }
+        
+        minc++;
+        
+        for(int i = minc; i <= maxc && cnt < n*m; i++){
+            System.out.println(arr[maxr][i]);
+            cnt++;
+        }
+        
+        maxr--;
+        
+        for(int i = maxr; i >= minr && cnt < n*m; i--){
+            System.out.println(arr[i][maxc]);
+            cnt++;
+        }
+        
+        maxc--;
+        
+        for(int i = maxc; i >= minc && cnt < n*m; i--){
+            System.out.println(arr[minr][i]);
+            cnt++;
+        }
+        minr++;
+        }
+    }
+
+}

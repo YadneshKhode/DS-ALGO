@@ -1,0 +1,41 @@
+https://practice.geeksforgeeks.org/problems/floor-in-a-sorted-array-1587115620/1#
+class Solution{
+    
+    // Function to find floor of x
+    // arr: input array
+    // n is the size of array
+
+
+// whenever start == end we would either be on target or we would be on value 
+// which is just less than target ( floor ) check if on the place (start == end) if arr[start] or arr[end]  (same positions) 
+// is less than target if so then return that position else return -1
+
+
+    static int findFloor(long nums[], int n, long target)
+    {
+        int start = 0;
+        int end = n - 1;
+        int ans = -1;
+        
+        while(start <= end){
+            int mid = start + ((end-start) >> 1);
+            if(target == nums[mid]){
+                ans = mid;
+                break;
+            }
+            
+            if(start == end && nums[start] < target){
+                ans = start;
+            }
+            
+            if(target < nums[mid]){
+                end = mid - 1;
+            }
+            else{
+                start = mid + 1;
+            }
+    }
+    return ans;
+    
+}
+}

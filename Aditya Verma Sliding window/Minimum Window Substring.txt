@@ -1,0 +1,95 @@
+  /*
+
+https://leetcode.com/problems/minimum-window-substring/submissions/
+
+https://www.youtube.com/watch?v=iwv1llyN6mo&list=PL_z_8CaSLPWeM8BDJmIYDaoQ5zuwyxnfj&index=21
+
+            1) character present in map so decrement by 1 j++
+            2) character not present in map just j++
+            3) after decrement check if value of character in map is 0 if so then count--
+            4) if i in map and negative in map then only i++ -> in while loop if not in map then also i++
+            5) if i in map and 0 or positive then j++ 
+            6) extract length when count == 0
+            */
+class Solution {
+   public static String minWindow(String s, String t) {
+       
+        int n = s.length();
+        int m = t.length();
+        
+        if(n < m) return "";
+        StringBuilder result = new StringBuilder();
+        HashMap<Character,Integer> map = new HashMap<>();
+        
+        for(int k = 0; k < m; k++){
+            char c = t.charAt(k); 
+            map.put(c,map.getOrDefault(c,0) + 1);
+        }
+        // count will keep track of characters with frequency more than 0 
+        // if frequency of all characters becomes 0 then it means the window contains 1 possible answer
+        int count = map.size();
+        int i = 0, j = 0, iIndex = -1, jIndex = -1, minLength = Integer.MAX_VALUE;
+        
+       
+       while(j < n){
+           char c = s.charAt(j);
+           Integer currVal = map.get(c);
+           // Make sure the key is never NULL and even the value is never null ony then use the below logic
+           // character present in map so decrement by 1 and increment end pointer
+           if(currVal != null){
+               map.put(c,currVal - 1);
+               if(currVal == 1) count--;
+           }
+           //If count ==0 it means all character frequency is 0 in the map
+           //it means the characters inside the window satisfies the solution
+           //so now we need to extract answer 
+            while(count == 0) { 
+               Integer containsStart = map.get(s.charAt(i));
+                // Extracting answer since count == 0
+                if(count == 0){
+                    //if window length is less than previous window length only then we will consider this answer
+                   if(minLength > (j-i+1)){
+                   minLength = j-i+1;
+                //storing the start and end index so that we can extract the characters in the window later on and return the final answer
+                   iIndex = i;
+                   jIndex = j;
+                 }
+               }
+                // if the containsStart is null it means that character does not exist in the map and we can
+                //increment the start pointer(i) carefree 
+               if(containsStart != null){
+                   // the current start pointer(i) is pointing to a character that is present in the map
+                   // so we need to increase the frequency of that character in the map because we are
+                   // going to remove it from our window and now our window has become deficit of 1 required character
+                   map.put(s.charAt(i), containsStart + 1);
+                   // if the frequency count of that character became 1 from 0 we need to increment count as the count keep track of the number of characters we still require 
+                   if(containsStart == 0) count++;
+               }
+                // once we increment the start pointer and if our count is still 0 so it means our window size has shrunk, and hence we need to extract the answer once again as this might be the possible answer
+               i++;
+             } 
+           j++;
+       }
+       
+       
+          
+        
+        if(iIndex != -1 && jIndex != -1){
+            for(int x = iIndex; x <= jIndex; x++){
+                result.append(s.charAt(x));
+            }
+        }
+        
+        return result.toString();
+        
+    }
+}
+
+
+
+
+
+
+
+
+
