@@ -1,3 +1,5 @@
+package Tree;
+
 import java.util.*;
 
 public class BinarySearchTree {
@@ -108,7 +110,7 @@ public class BinarySearchTree {
         if (root == null)
             return;
 
-        Stack<Node> stack = new Stack<>();
+        // Stack<Node> stack = new Stack<>();
 
     }
 
