@@ -3,7 +3,8 @@ package Aditya_Verma_Binary_Search;
 // https://www.youtube.com/watch?v=OINnBJTRrMU&list=PL_z_8CaSLPWeYfhtuKHj-9MpYb6XQJ_f2&index=17
 public class Peak_Element {
 
-    // to find a peak element if the element is present at 0th position we just need
+    // to find a peak element if the element(curr mid) is present at 0th position we
+    // just need
     // to check
     // element at 1st index (since element at -1 index will be out of bounds) and if
     // the peak element is present at n-1 index we need to check

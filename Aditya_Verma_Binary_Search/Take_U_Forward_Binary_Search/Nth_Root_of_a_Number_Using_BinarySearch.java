@@ -1,4 +1,4 @@
-package Aditya_Verma_Binary_Search.Take_U_Forward_Bnary_Search;
+package Aditya_Verma_Binary_Search.Take_U_Forward_Binary_Search;
 
 // https://www.youtube.com/watch?v=WjpswYrS2nY&list=PLgUwDviBIf0qYbL4TBaEWgb-ljVdhkM7R&index=6
 
