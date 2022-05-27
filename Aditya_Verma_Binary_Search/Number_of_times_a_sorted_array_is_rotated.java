@@ -1,10 +1,11 @@
 package Aditya_Verma_Binary_Search;
+
+//Aditya Verma
 // https://www.youtube.com/watch?v=4WmTRFZilj8&list=PL_z_8CaSLPWeYfhtuKHj-9MpYb6XQJ_f2&index=7
 
 //https://practice.geeksforgeeks.org/problems/rotation4723/1/
-
-//https://www.youtube.com/watch?v=4WmTRFZilj8&list=PL_z_8CaSLPWeYfhtuKHj-9MpYb6XQJ_f2&index=7
-
+// Pepcoding
+// https://www.youtube.com/watch?v=vF7gk4iaklA
 // The minimum element will always lie on the part of the array where the array is unsorted
 // because whenever we go up and then the fall comes it will always hit the bottom 
 // case 1: we are starting from bottom and keep going up (complete sorted array)
