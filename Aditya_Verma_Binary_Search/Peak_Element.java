@@ -30,9 +30,9 @@ public class Peak_Element {
     // if we did not find peak it means the last element is greater than second last
     // element and hence the last element is our peak and if we found somthing that
     // is less than mid or any number after mid then that number is the peak
-    // e.g. {1,2,3,5,10,20,30,8,}
-    // after 20 we found 1 number that satisfies peak element criteria and hence it
-    // is peak if 30 was not present then the last number would have been peak
+    // e.g. {1,2,3,5,10,20,8,}
+    // after 5 we found 1 number that satisfies peak element criteria and hence it
+    // is peak if (10,20) was not present then the last number would have been peak
     // else if(arr[mid-1] > arr[mid]) high = mid-1;
     // else low = mid + 1
     // }
