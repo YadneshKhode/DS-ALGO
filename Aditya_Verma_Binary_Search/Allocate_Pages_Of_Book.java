@@ -1,7 +1,17 @@
 package Aditya_Verma_Binary_Search;
 
+/*
+ * Related Problems For Practice :
+ * Book Allocation Problem (GFG)
+ * Aggressive cow (spoj)
+ * Prata and roti (spoj)
+ * EKO (spoj)
+ * Google kickstart A Q-3 2020
+ */
+
 public class Allocate_Pages_Of_Book {
     // https://www.youtube.com/watch?v=2JSQIhPcHQg&list=PL_z_8CaSLPWeYfhtuKHj-9MpYb6XQJ_f2&index=40
+    // ye wala mast hai ekdum -> https://www.youtube.com/watch?v=gYmWHvRHu-s
     class Solution {
         // Function to find minimum number of pages.
         public int findPages(int[] arr, int n, int m) {
@@ -12,11 +22,33 @@ public class Allocate_Pages_Of_Book {
             int low = 0, high = 0, mid = 0;
 
             // low will always be the max of the array and highest would be the sum of all
-            // the array elements
-            // watch video for better understanding
+            // the array elements (in striver video he said low will be minimum of array but
+            // it should be max of array)
+            // low will be max of array because lets say we have array = {1,90,2,3} student
+            // = 4, so since the rule states each and every book in the array should be
+            // alloted and every student should get
+            // at least 1 book we can safely say 1 student will be allocated book with 90
+            // pages and this 90 will be our answer
+            // because we have to return number of max pages allocated to a student in such
+            // a way that the allocation of pages
+            // makes sure there is no other combination of allocation in which the student
+            // would have been allocated less number of pages (for e.g. student = 2 arr =
+            // {10,20,30,40} student 2 allocated 10 and student 2 allocated (20+30+40) this
+            // is not valid as there exists other allocation combination student 1 =
+            // 10,20,30 and student 2 = 40 here student 2 gets max of 40 pages and no other
+            // allocation combination gives less than 40 )
+
+            // for more clarity of above you can watch striver video's comments and NOT the
+            // video itself
+
             // The number of pages will never exceed the total number of pages hence max is
             // sum of all array
-            // Even i have doubts about low
+            // for e.g. student = 1 arr = {1,2,3,4} here the maximum can be 10 (1+2+3+4)
+            // pages allocated to 1 student
+            // there is no other possible combination
+
+            // hence low = max(array) and high = sum(array)
+
             for (int i = 0; i < arr.length; i++) {
                 low = Math.max(low, arr[i]);
                 high += arr[i];
