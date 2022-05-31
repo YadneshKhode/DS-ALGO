@@ -13,12 +13,15 @@ public class Nth_Root_of_a_Number_Using_BinarySearch {
             double mid = low + (high - low) / 2;
             // double multiplied = Math.pow(mid, n);
             if (multiplied(mid, n) > m) // For multiplied function use Binary Exponentiation
+                // Not doing -1 Because we want annswer in terms of decimal places, doing a -1
+                // will not help
                 high = mid;
             else
                 low = mid;
         }
         System.out.println(low);
         System.out.println(high);
+        // below line calculates using pow function so we can compare our answer with it
         System.out.println(Math.pow(m, (double) (1.0 / (double) n)));
     }
 
