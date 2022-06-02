@@ -1,3 +1,16 @@
+
+//https://leetcode.com/problems/search-in-rotated-sorted-array/ 
+
+//https://www.youtube.com/watch?v=r3pMQ8-Ad5s&list=PLgUwDviBIf0qYbL4TBaEWgb-ljVdhkM7R&index=6
+
+/*
+1 approach is to find the pivot element and apply binary search on the side in which the target lies.
+
+but we are doing extra work of finding pivot even though time complexity is log n
+
+below approach finds target without finding pivot
+*/
+
 public class Search_in_Rotated_Sorted_Array {
 
     public int search(int[] nums, int target) {
