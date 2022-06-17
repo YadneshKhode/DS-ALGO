@@ -1,3 +1,4 @@
+package Take_U_Forward_Binary_Search;
 // https://www.youtube.com/watch?v=WjpswYrS2nY&list=PLgUwDviBIf0qYbL4TBaEWgb-ljVdhkM7R&index=6
 
 public class Nth_Root_of_a_Number_Using_BinarySearch {
@@ -11,7 +12,7 @@ public class Nth_Root_of_a_Number_Using_BinarySearch {
             double mid = low + (high - low) / 2;
             // double multiplied = Math.pow(mid, n);
             if (multiplied(mid, n) > m) // For multiplied function use Binary Exponentiation
-                // Not doing -1 Because we want annswer in terms of decimal places, doing a -1
+                // Not doing -1 Because we want answer in terms of decimal places, doing -1
                 // will not help
                 high = mid;
             else

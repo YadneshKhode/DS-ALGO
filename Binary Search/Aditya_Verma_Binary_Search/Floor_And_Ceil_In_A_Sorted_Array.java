@@ -1,9 +1,7 @@
+package Aditya_Verma_Binary_Search;
+
 // https://practice.geeksforgeeks.org/problems/floor-in-a-sorted-array-1587115620/1/
 public class Floor_And_Ceil_In_A_Sorted_Array {
-
-}
-
-class Solution {
 
     // Function to find floor of x
     // arr: input array
@@ -15,12 +13,14 @@ class Solution {
     // If we are not able to find it then the ending state will be like the low
     // pointer has passed high pointer
     // for eg - {1,2,4,5} x = 3
-    // We are trying to find 3 and we are not able to find it so our low will be at
+    // We are trying to find 3 and we are not able to find it so our "high" will be
+    // at
     // index 1
-    // and high will be at index 2
-    // and the missing 3 should have been between this low and high and our low will
+    // and "low" will be at index 2
+    // and the missing 3 should have been between this low and high and our high
+    // will
     // be
-    // pointing at the floor(the value just less than X) and high will be pointing
+    // pointing at the floor(the value just less than X) and low will be pointing
     // at Ceil
     // the value just more than X
     // We have to handle edge cases where 1) (low = n & high = n-1) 2) (low = 0 &
