@@ -1,7 +1,11 @@
 package Aditya_Verma_Binary_Search;
 
 // https://www.youtube.com/watch?v=OINnBJTRrMU&list=PL_z_8CaSLPWeYfhtuKHj-9MpYb6XQJ_f2&index=17
+
+//https://www.youtube.com/watch?v=vF7gk4iaklA (IMP PEPCODING)
 public class Peak_Element {
+
+    // THE PEAK WILL ALWAYS LIE IN THE UNSORTED PORTION OF THE ARRAY
 
     // to find a peak element if the element(curr mid) is present at 0th position we
     // just need

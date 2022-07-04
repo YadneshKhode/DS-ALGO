@@ -11,11 +11,24 @@ package Aditya_Verma_Binary_Search;
 
 public class Allocate_Pages_Of_Book {
     // https://www.youtube.com/watch?v=2JSQIhPcHQg&list=PL_z_8CaSLPWeYfhtuKHj-9MpYb6XQJ_f2&index=40
-    // ye wala mast hai ekdum -> https://www.youtube.com/watch?v=gYmWHvRHu-s
+    // ye wala mast hai ekdum (comments) ->
+    // https://www.youtube.com/watch?v=gYmWHvRHu-s
     class Solution {
         // Function to find minimum number of pages.
         public int findPages(int[] arr, int n, int m) {
             // Your code here
+
+            /*
+             * IMPORTANT POINTS IN QUESTION
+             * 
+             * 1) The book allocation done is contiguous
+             * for eg arr = [40,50,10,55]
+             * 
+             * student1 can get 40,50 or 50,10,55 and so on he cannot get 40,10 or 50,55
+             * that is in discontinuous manner
+             * 
+             * 2) The pages in the book cannot be distributed
+             */
             if (m > n)
                 return -1; // If Number of students exceed number of books then return -1
             // because as per question we need to assign at least 1 book
@@ -33,7 +46,7 @@ public class Allocate_Pages_Of_Book {
             // a way that the allocation of pages
             // makes sure there is no other combination of allocation in which the student
             // would have been allocated less number of pages (for e.g. student = 2 arr =
-            // {10,20,30,40} student 2 allocated 10 and student 2 allocated (20+30+40) this
+            // {10,20,30,40} student 1 allocated 10 and student 2 allocated (20+30+40) this
             // is not valid as there exists other allocation combination student 1 =
             // 10,20,30 and student 2 = 40 here student 2 gets max of 40 pages and no other
             // allocation combination gives less than 40 )
@@ -63,10 +76,13 @@ public class Allocate_Pages_Of_Book {
                     low = mid + 1;
             }
             return low;
-            // return low because take e.g. of N = 4 arr={12,34,67,90} m = 2
-            // Here mid is 112 mid might not necessarily point to the answer
-            // But when the condition breaks the high will be behind low and low will be our
-            // answer
+            /*
+             * return low because take e.g. of N = 4 arr={12,34,67,90} m = 2
+             * Here mid is 112 mid might not necessarily point to the answer
+             * But when the condition breaks the high will be behind low and low will be our
+             * answer or we can simply have a variable ans and check ans = Math.min(ans,mid)
+             * in the if block where we are checking isValid
+             */
 
         }
 
