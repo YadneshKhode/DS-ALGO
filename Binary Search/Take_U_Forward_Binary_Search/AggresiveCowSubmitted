@@ -1,0 +1,99 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.util.*;
+
+public class AggresiveCowSubmitted {
+    static PrintWriter out;
+
+    static class FastReader {
+        BufferedReader br;
+        StringTokenizer st;
+
+        public FastReader() {
+            br = new BufferedReader(new InputStreamReader(System.in));
+        }
+
+        String next() {
+            while (st == null || !st.hasMoreElements()) {
+                try {
+                    st = new StringTokenizer(br.readLine());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return st.nextToken();
+        }
+
+        int nextInt() {
+            return Integer.parseInt(next());
+        }
+
+        long nextLong() {
+            return Long.parseLong(next());
+        }
+
+        double nextDouble() {
+            return Double.parseDouble(next());
+        }
+
+        String nextLine() {
+            String str = "";
+            try {
+                str = br.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return str;
+        }
+    }
+
+    public static void main(String[] args) {
+        out = new PrintWriter(System.out);
+        FastReader sc = new FastReader();
+        int testCases = sc.nextInt();
+        while (testCases-- > 0) {
+            int stalls = sc.nextInt();
+            int cows = sc.nextInt();
+            int[] arr = new int[stalls];
+            for (int i = 0; i < stalls; i++) {
+                arr[i] = sc.nextInt();
+            }
+            out.println(getAnswer(arr,stalls,cows));
+        }
+        out.flush();
+    }
+    public static int getAnswer(int[] arr, int stalls, int cows){
+        Arrays.sort(arr);
+        int low = 0, high = arr[stalls-1] - arr[low], ans = Integer.MIN_VALUE;
+        
+        while(low <= high){
+            int mid = (low + high) >>> 1;
+            //out.println("mid = "+mid);
+            if(isPossible(arr,stalls,cows,mid)){
+                low = mid + 1;
+                ans = Math.max(mid,ans);
+                //out.println("ans = "+ans);
+            }
+            else{
+                high = mid - 1;
+            }
+        }
+        return ans;
+    }
+    public static boolean isPossible(int[] arr, int stalls, int cows, int limit){
+        int prev = 0; cows -= 1;
+        for(int i = 1; i < stalls;i++){
+            if(arr[i] - arr[prev] >= limit){
+                cows--;
+                prev = i;
+               // System.out.println("arr[i] = "+ arr[i]);
+                // System.out.println("arr[prev] = "+ arr[prev]);
+            }
+            if(cows == 0) return true;
+        }
+        return false;
+    }
+
+}
