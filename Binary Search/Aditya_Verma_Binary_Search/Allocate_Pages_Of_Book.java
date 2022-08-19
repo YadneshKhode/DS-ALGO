@@ -8,7 +8,6 @@ package Aditya_Verma_Binary_Search;
  * EKO (spoj)
  * Google kickstart A Q-3 2020
  */
-
 public class Allocate_Pages_Of_Book {
     // https://www.youtube.com/watch?v=2JSQIhPcHQg&list=PL_z_8CaSLPWeYfhtuKHj-9MpYb6XQJ_f2&index=40
     // ye wala mast hai ekdum (comments) ->
