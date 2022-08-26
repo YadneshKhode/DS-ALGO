@@ -1,7 +1,6 @@
+import java.util.*;
 //https://practice.geeksforgeeks.org/problems/count-occurences-of-anagrams5839/1#
 //https://www.youtube.com/watch?v=MW4lJ8Y0xXk&list=PL_z_8CaSLPWeM8BDJmIYDaoQ5zuwyxnfj&index=5
-
-
 
 /*
 approach:
@@ -30,34 +29,39 @@ class Solution {
 
     int search(String pat, String txt) {
         // code here
-        int freq[] = new int[26];
-        Arrays.fill(freq,0);
-        final int k = pat.length();
-        int start = 0, end = 0, result = 0, count = 0;
-        
-       HashSet<Character> set = new HashSet<>();
-        for(int i = 0; i < pat.length(); i++){
-            freq[pat.charAt(i) - 97] += 1;
-            set.add(pat.charAt(i));
+        int start = 0, end = -1, n = txt.length(), k = pat.length(), result = 0;
+        HashMap<Character, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < k; i++) {
+            map.put(pat.charAt(i), map.getOrDefault(pat.charAt(i), 0) + 1);
         }
-       count = set.size();
-        while(end < txt.length()){
-           if(set.contains(txt.charAt(end))){
-               freq[txt.charAt(end) - 'a'] -= 1;
-               if(freq[txt.charAt(end) - 'a'] == 0) count--;
-           }
-            
-            if(end-start+1 < k){
-                 end++;
-            }
-            else if(end-start+1 == k){
-                if(count == 0) result++;
-                if(set.contains(txt.charAt(start))){
-                    freq[txt.charAt(start) - 97] += 1;
-                    if(freq[txt.charAt(start) - 97] == 1) count++;
+        int count = map.size();
+        while (end < n) {
+            int size = end - start + 1;
+            if (size < k) {
+                end++;
+                if (end < n) {
+                    Character endChar = txt.charAt(end);
+                    Integer freqOfEndChar = map.get(endChar);
+                    if (freqOfEndChar != null) {
+                        map.put(endChar, freqOfEndChar - 1);
+                        if (freqOfEndChar == 1)
+                            count--;
+                    }
+                }
+
+            } else {
+                if (count == 0) {
+                    result++;
+                }
+                Character startChar = txt.charAt(start);
+                Integer freqOfStartChar = map.get(startChar);
+                if (freqOfStartChar != null) {
+                    map.put(startChar, freqOfStartChar + 1);
+                    if (freqOfStartChar == 0)
+                        count++;
                 }
                 start++;
-                end++; 
             }
         }
         return result;
