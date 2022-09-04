@@ -1,3 +1,5 @@
+import java.util.*;
+
 /*https://practice.geeksforgeeks.org/problems/longest-k-unique-characters-substring0853/1#
 https://www.youtube.com/watch?v=Lav6St0W_pQ&list=PL_z_8CaSLPWeM8BDJmIYDaoQ5zuwyxnfj&index=10
 
@@ -21,20 +23,21 @@ class Solution {
     public int longestkSubstr(String s, int k) {
         // code here
         int start = 0, end = 0, ans = -1;
-        Map<Character,Integer> map = new HashMap<>();
-        
-        while(end < s.length()){
-            map.put(s.charAt(end),map.getOrDefault(s.charAt(end),0) + 1);
-            if(map.size() > k){
-                while(map.size() > k){
+        Map<Character, Integer> map = new HashMap<>();
+
+        while (end < s.length()) {
+            map.put(s.charAt(end), map.getOrDefault(s.charAt(end), 0) + 1);
+            if (map.size() > k) {
+                while (map.size() > k) {
                     char c = s.charAt(start);
                     map.put(c, map.get(c) - 1);
-                    if(map.get(c) == 0) map.remove(c);
+                    if (map.get(c) == 0)
+                        map.remove(c);
                     start++;
                 }
             }
-            if(map.size() == k){
-                ans = Math.max(ans, end-start+1);
+            if (map.size() == k) {
+                ans = Math.max(ans, end - start + 1);
             }
             end++;
         }
