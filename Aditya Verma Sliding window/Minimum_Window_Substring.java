@@ -38,7 +38,11 @@ class Solution {
                         count--;
                     map.put(s.charAt(end), --freq);
                 }
-                end++;
+                end++; // we can write the end after below while loop then while appending
+                       // stringbuilder in result we have to do i <= endIndex instead of i < endIndex
+                       // this is because for e.g. start=0, end=0 now lets say my count has become 0 in
+                       // while loop the value of endIndex will be 1 instead of 0 and hence this
+                       // endIndex can go out of bounds as well.
             }
             while (count == 0) {
                 if (minLength > end - start + 1) {
