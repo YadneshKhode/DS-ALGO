@@ -4,34 +4,29 @@ import java.util.*;
 
 public class sort_array_using_recursion {
     public static void main(String args[]) {
-        System.out.println(sort(new ArrayList<>(
-                Arrays.asList(3, 2, 1, 4, 5, 6, 7))));
+        System.out.println(sort2(new ArrayList<>(
+                Arrays.asList(3, -2, 1, 4, 5, 6, 70))));
 
     }
 
-    public static ArrayList<Integer> sort(ArrayList<Integer> arr) {
-        if (arr.size() == 1) {
+    public static ArrayList<Integer> sort2(ArrayList<Integer> arr) {
+        if (arr.size() == 1)
             return arr;
-        }
-        int temp = arr.get(arr.size() - 1);
-        arr.remove(arr.size() - 1);
-        arr = sort(arr);
-        insert(arr, temp);
+        int temp = arr.get(0);
+        arr.remove(0);
+        arr = sort2(arr);
+        insert2(arr, temp);
         return arr;
     }
 
-    public static ArrayList<Integer> insert(ArrayList<Integer> arr, int temp) {
-        if (arr.get(0) >= temp) {
+    public static void insert2(ArrayList<Integer> arr, int temp) {
+        if (arr.size() == 0 || arr.get(0) >= temp) {
             arr.add(0, temp);
-        } else if (arr.get(arr.size() - 1) <= temp) {
-            arr.add(temp);
         } else {
-            int temp1 = arr.get(arr.size() - 1);
-            arr.remove(arr.size() - 1);
-            arr = insert(arr, temp);
-            arr.add(arr.size(), temp1);
+            int temp1 = arr.remove(0);
+            insert2(arr, temp);
+            arr.add(0, temp1);
         }
-
-        return arr;
     }
+
 }
