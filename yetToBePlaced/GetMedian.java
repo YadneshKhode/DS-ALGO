@@ -1,4 +1,6 @@
-class Xyz {
+package yetToBePlaced;
+
+class GetMedian {
     public static void main(String[] args) {
         // int n = 4;
         // int[] arr1 = { 1, 3, 5, 7 };

@@ -1,4 +1,3 @@
-package Aditya_Verma_Binary_Search;
 
 /*
  * Related Problems For Practice :

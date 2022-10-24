@@ -1,4 +1,3 @@
-package recursion.Aditya_Verma_Recursion;
 
 class Hanoi {
     long count = 0;

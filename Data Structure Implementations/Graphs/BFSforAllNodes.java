@@ -1,4 +1,3 @@
-package Graphs;
 
 // https://practice.geeksforgeeks.org/problems/bfs-traversal-of-graph/1#
 // wont work on above website since above only checks for graphs starting from 0 and reachable from 0

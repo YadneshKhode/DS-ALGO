@@ -1,5 +1,3 @@
-package Aditya_Verma_Binary_Search;
-
 import java.util.*;
 
 // First and last occurrences of X

@@ -1,5 +1,3 @@
-package Aditya_Verma_Binary_Search;
-
 // https://www.youtube.com/watch?v=FzvK5uuaki8&list=PL_z_8CaSLPWeYfhtuKHj-9MpYb6XQJ_f2&index=13
 public class Find_position_of_an_element_in_an_Infinite_Sorted_Array {
     /*

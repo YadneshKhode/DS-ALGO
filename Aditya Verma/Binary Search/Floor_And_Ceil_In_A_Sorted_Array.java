@@ -1,4 +1,3 @@
-package Aditya_Verma_Binary_Search;
 
 // https://practice.geeksforgeeks.org/problems/floor-in-a-sorted-array-1587115620/1/
 public class Floor_And_Ceil_In_A_Sorted_Array {
