@@ -19,7 +19,7 @@ import java.util.*;
  * SC - O(N) + O(N) + O(N) == O(N)
  *    - we are saving parent node of each and every node + We are saving nodes on each level inside the deque (This is usually 2 ^ n-1 where n is the height of the tree ) + Space complexity of storing visited nodes 
  * 
- * Hashmap has O(1) complexity in Java and O(log n) in C++
+ * Hashmap has O(1) complexity in Java
  */
 public class Print_All_The_Nodes_At_a_Distance_Of_K_in_Binary_Tree {
     private void markParents(TreeNode root, Map<TreeNode, TreeNode> parentMap) {
