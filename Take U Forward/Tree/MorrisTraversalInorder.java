@@ -26,6 +26,11 @@ public class MorrisTraversalInorder {
                 inOrder.add(root.val);
                 root = root.right;
             } else {
+                /*
+                 * We are not moving root directly because later on we will require reference of
+                 * root node so we can point the right most node on left side of the root to the
+                 * root node, so after completing left side we can move towards right side
+                 */
                 TreeNode curr = root.left;
                 /*
                  * Trying to find the rightmost node in left subtree
@@ -61,6 +66,59 @@ public class MorrisTraversalInorder {
             }
         }
         return inOrder;
+    }
+
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> preorder = new ArrayList<>();
+
+        if (root == null)
+            return preorder;
+
+        while (root != null) {
+            if (root.left == null) {
+                preorder.add(root.val);
+                root = root.right;
+            } else {
+                /*
+                 * We are not moving root directly because later on we will require reference of
+                 * root node so we can point the right most node on left side of the root to the
+                 * root node, so after completing left side we can move towards right side
+                 */
+                TreeNode curr = root.left;
+                /*
+                 * Trying to find the rightmost node in left subtree
+                 */
+                while (curr.right != null && curr.right != root) {
+                    curr = curr.right;
+                }
+                /*
+                 * We have reached rightmost node and now we have to make sure its right points
+                 * to root and now we can move root to root.left and then again follow all the
+                 * steps of finding rightmost etc
+                 * 
+                 * 
+                 * In this moment we already know either our curr points to the rightmost and
+                 * the rightmost is pointing to Null OR it is pointing to the root again
+                 */
+
+                /*
+                 * right Pointing to null
+                 */
+                if (curr.right == null) {
+                    curr.right = root;
+                    root = root.left;
+                }
+                /*
+                 * right Pointing to root again
+                 */
+                else {
+                    curr.right = null;
+                    preorder.add(root.val);
+                    root = root.right;
+                }
+            }
+        }
+        return preorder;
     }
 }
 
