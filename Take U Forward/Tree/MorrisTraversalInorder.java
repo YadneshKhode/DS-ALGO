@@ -33,7 +33,10 @@ public class MorrisTraversalInorder {
                  */
                 TreeNode curr = root.left;
                 /*
-                 * Trying to find the rightmost node in left subtree
+                 * Trying to find the rightmost node in left subtree, the below for loop has
+                 * amortized time complexity of O(N) - approx at 22:00 min in video, inshort
+                 * this below loop will in total run for O(N), in each iteration it might run
+                 * for the branch length
                  */
                 while (curr.right != null && curr.right != root) {
                     curr = curr.right;
@@ -76,6 +79,10 @@ public class MorrisTraversalInorder {
 
         while (root != null) {
             if (root.left == null) {
+                /*
+                 * this below automatically takes care of preorder since left is null we print
+                 * current root node and move to right (root,left=null,right)
+                 */
                 preorder.add(root.val);
                 root = root.right;
             } else {
@@ -86,7 +93,8 @@ public class MorrisTraversalInorder {
                  */
                 TreeNode curr = root.left;
                 /*
-                 * Trying to find the rightmost node in left subtree
+                 * Trying to find the rightmost node in left subtree,the below for loop has
+                 * amortized time complexity of O(N) - approx at 22:00 min in video
                  */
                 while (curr.right != null && curr.right != root) {
                     curr = curr.right;
@@ -106,6 +114,11 @@ public class MorrisTraversalInorder {
                  */
                 if (curr.right == null) {
                     curr.right = root;
+                    /*
+                     * added preorder here, since we are on root and we are moving to left side
+                     * (root,left,right)->preorder
+                     */
+                    preorder.add(root.val);
                     root = root.left;
                 }
                 /*
@@ -113,7 +126,10 @@ public class MorrisTraversalInorder {
                  */
                 else {
                     curr.right = null;
-                    preorder.add(root.val);
+                    /*
+                     * removed preorder.add(root.val); from here and added above this is the only
+                     * change
+                     */
                     root = root.right;
                 }
             }
