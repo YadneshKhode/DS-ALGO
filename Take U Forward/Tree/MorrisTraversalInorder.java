@@ -53,6 +53,34 @@ public class MorrisTraversalInorder {
 
                 /*
                  * right Pointing to null
+                 * Why rightmost node's of the left subtree's right is root? Why not left?
+                 * -> Because when I am at root and go to left part of subtree to find the right
+                 * most node of this part of tree I keep going right and right until I encounter
+                 * null if I encounter null it means this is the last node that will be visited
+                 * (since left,root,right-> inorder traversal rightmost node of any tree is last
+                 * visited)
+                 * before I have to go back to the root node so I can traverse to right
+                 * 
+                 * I will always search for right right
+                 * right on left subtree
+                 * And if I reach root it means I have already visited left
+                 * So if I don't do this I won't be able to get back to root just by doing right
+                 * right
+                 * And hence
+                 * And not left
+                 * In the base if condition if left == null print node and go right
+                 * Whenever we reach leftmost leaf node since it's right is pointing to its
+                 * parent root node
+                 * 
+                 * When we go right we automatically reach its parent but we actually don't know
+                 * it is its parent since we just went right But in earlier iteration we made
+                 * right most nodes right as the parent node
+                 * Now again we check if this node has left it obviously has since we just
+                 * traversed but we don't know that we traversed
+                 * Now again we check the right most node in left part
+                 * While doing so we automatically reach the current node ... Since we had
+                 * created pointer in previous iteration So now we understood it is already
+                 * visited and we remove this pointer thread created and move right
                  */
                 if (curr.right == null) {
                     curr.right = root;
@@ -60,9 +88,15 @@ public class MorrisTraversalInorder {
                 }
                 /*
                  * right Pointing to root again
+                 * 
+                 * 
                  */
                 else {
                     curr.right = null;
+                    /*
+                     * We have to add inOrder here because at this juncture we have completely
+                     * traversed the left part and now are going to move towards the right part
+                     */
                     inOrder.add(root.val);
                     root = root.right;
                 }
