@@ -137,8 +137,12 @@ public class FlattenABinaryTreeToLinkedList {
     // TC - O(N) and SC - O(1) (Space complexity is O(1) where as for others it was
     // O(N))
 
-    // Below code is written by me and it is not same as striver's code
-
+    /*
+     * Below code is written by me and it is not same as striver's code, my code
+     * follows preorder traversal, striver code follows inorder traversal, you can
+     * try both, inorder is easier since finding the right most node is easier, we
+     * just have to keep doing root = root.right to find it
+     */
     /*
      * 1. Remember we can use morris traversal to traverse tree in perorder as well
      * as inorder manner in O(1) space complexity.
