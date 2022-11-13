@@ -13,7 +13,7 @@ import java.util.*;
  * 4. check if value is either 1 or 2 or 3
  * 5. 1 denotes this currentNode is going to be added in preorder traversal result list so on and so forth for 2 and 3 for inorder and postOrder traversal.
  * 6. if current val is 1 then add the current root to preorder list and increment the val to 2 and reinsert in the stack then check if the node has left or not if yes then push it on stack with value 1
- * 7. similarly for 2, but here we need to check if the currNode has right node or not since we already checked left node previously.
+ * 7. similarly for 2, but here we need to check if the currNode has right node or not since we already checked left node previously.( while 2 we are looking for inorder (left,root,right) hence left is done we are on root now only option is to go right)
  * 
  * 8. In postorder everything is already processed and hence just add in postorder list and move on.
  * 
