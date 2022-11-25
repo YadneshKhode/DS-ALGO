@@ -54,6 +54,10 @@ public class ConstructTreeFromPreorderAndInorder {
      * same needs to be done for right side of the tree Inorder - [60,30] and
      * preorder - [30,60]
      * 
+     * when only 1 element in the array remains and we call same function
+     * recursively the end pointer and start pointer cross each other and returns
+     * null for both root.left and root.right, and we return the root
+     * 
      */
 
     public TreeNode buildTree(int[] preorder, int[] inorder) {
