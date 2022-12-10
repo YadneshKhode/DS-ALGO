@@ -14,6 +14,12 @@ class BfsTraversal {
      * root needs to be visited so on and so forth. so basically when we are on 0th
      * vertice we push all nodes at level 1 in the deque and when we are at vertice
      * 1 we push all nodes that are at 2nd level
+     * 
+     * SC - O(3N) - visited array + deque + visit each vertice once = O(N);
+     * TC - O(N) + (2 x No. of edges) -> time to iterate each vertice + we are
+     * iterating over all neighbors of that certain vertice hence it is equal to
+     * summation of all degrees of all vertices in the graph which is equivalent to
+     * (2 x No. of edges in the graph)
      */
     public ArrayList<Integer> bfsOfGraph(int v, ArrayList<ArrayList<Integer>> adj) {
 
