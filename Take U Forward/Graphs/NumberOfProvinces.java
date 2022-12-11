@@ -28,7 +28,6 @@ class NumberOfProvincesBFS {
                 }
             }
         }
-
         for (int i = 0; i < v; i++) {
             /*
              * Below if block will be executed whenever we have completely traversed 1
