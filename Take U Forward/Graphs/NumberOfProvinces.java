@@ -1,6 +1,6 @@
 import java.util.*;
 
-class NumberOfProvincesDFS {
+class NumberOfProvincesBFS {
     static int numProvinces(ArrayList<ArrayList<Integer>> mat, int v) {
         // code here
         Deque<Integer> deque = new ArrayDeque<>();
@@ -57,5 +57,52 @@ class NumberOfProvincesDFS {
 
         return countOfProvinces;
 
+    }
+}
+
+class NumberOfProvincesDFS {
+    static int numProvinces(ArrayList<ArrayList<Integer>> mat, int v) {
+        // code here
+        int countOfProvinces = 0;
+        // when we initialise array whole array has all values as automatically 0
+        // preventing one more iteration of the array using Arrays.fill for Boolean
+        int vis[] = new int[v];
+        ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
+
+        /*
+         * Important to create arraylist of arraylist or there would be errors
+         */
+        for (int i = 0; i < v; i++) {
+            adj.add(new ArrayList<Integer>());
+        }
+
+        for (int i = 0; i < v; i++) {
+            for (int j = 0; j < v; j++) {
+                if (mat.get(i).get(j) == 1 && i != j) {
+                    adj.get(i).add(j);
+                    adj.get(j).add(i);
+                }
+            }
+        }
+
+        for (int i = 0; i < v; i++) {
+
+            if (vis[i] == 0) {
+                countOfProvinces++;
+            }
+
+            dfs(adj, vis, i);
+        }
+
+        return countOfProvinces;
+    }
+
+    static void dfs(ArrayList<ArrayList<Integer>> adj, int[] vis, Integer node) {
+        vis[node] = 1;
+        for (Integer itr : adj.get(node)) {
+            if (vis[itr] == 0) {
+                dfs(adj, vis, itr);
+            }
+        }
     }
 }
