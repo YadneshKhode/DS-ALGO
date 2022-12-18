@@ -2,6 +2,11 @@ import java.util.*;
 
 //https://www.youtube.com/watch?v=Qzf1a--rhp8&list=PLgUwDviBIf0oE3gA41TKO2H5bHpPd7fzn&index=9
 //https://practice.geeksforgeeks.org/problems/depth-first-traversal-for-a-graph/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=dfs_of_graph
+//https://takeuforward.org/data-structure/depth-first-search-dfs/
+//Time Complexity: For an undirected graph, O(N) + O(2E), For a directed graph, O(N) + O(E), Because for every node we are calling the recursive function once, the time taken is O(N) and 2E is for total degrees as we traverse for all adjacent nodes.
+
+//Space Complexity: O(3N) ~ O(N), Space for dfs stack space, visited array and an adjacency list.
+
 public class DfsTraversal {
     /*
      * get 1st vertice, we have the adj list for this vertice call recursion on each

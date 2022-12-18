@@ -1,6 +1,9 @@
 
 //https://www.youtube.com/watch?v=-tgVpUgsQ5k&list=PLgUwDviBIf0oE3gA41TKO2H5bHpPd7fzn&index=6
 //https://practice.geeksforgeeks.org/problems/bfs-traversal-of-graph/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=bfs_of_graph
+//Time Complexity: O(N) + O(2E), Where N = Nodes, 2E is for total degrees as we traverse all adjacent nodes.
+//Space Complexity: O(3N) ~ O(N), Space for queue data structure visited array and an adjacency list
+//https://takeuforward.org/graph/breadth-first-search-bfs-level-order-traversal/
 import java.util.*;
 
 class BfsTraversal {
