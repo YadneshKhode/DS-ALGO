@@ -94,3 +94,37 @@ public class InOrderTraversal {
 
     }
 }
+
+/* LATEST COMPACT SOLUTION - 27-12-2022 */
+
+class Solution {
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> inorder = new ArrayList<>();
+        Deque<TreeNode> deque = new ArrayDeque<>();
+        while (root != null || !deque.isEmpty()) {
+            /*
+             * 1. Just do what happens in recursion.
+             * 2. Keep going left until null and keep adding nodes in the deque.
+             * 3. Once we encounter null just pop from deque add to inorder list since we
+             * are done with left and move to right now
+             * 4. Keep doing this
+             * 5. Now when to stop? If you think then you will understand once the deque
+             * becomes empty we dont have anything to process so we add condition
+             * "!deque.isEmpty()"
+             * 6. But initially deque is empty now how to get the control inside the 1st
+             * while loop? Just check if root is null or not, since in the end root will be
+             * null AND deque will be empty, initially root will not be null even though
+             * deque is empty initially so we put "OR" condition
+             */
+            while (root != null) {
+                deque.addLast(root);
+                root = root.left;
+            }
+            root = deque.removeLast();
+            inorder.add(root.val);
+            root = root.right;
+        }
+
+        return inorder;
+    }
+}
