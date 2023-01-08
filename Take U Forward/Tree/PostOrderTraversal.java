@@ -65,23 +65,35 @@ public class PostOrderTraversal {
         if (root == null)
             return postOrder;
         Stack<TreeNode> stack1 = new Stack<>();
-        Stack<TreeNode> stack2 = new Stack<>();
 
         stack1.push(root);
-
+        /*
+         * 1. In the postorder list we are adding root first then all the elements on
+         * the right of the root and then all the elements on the left side of the root
+         * and then we are reversing the postorder list to get proper root-> left ->
+         * right that represents the postorder
+         * 
+         * 2. This seems to be vaguely similar to preorder, since we are doing ROOT ->
+         * RIGHT -> LEFT, just the difference is right and left are swapped - check the
+         * preorder logic we add right first to the stack and then we add left
+         * 
+         * 3. Here we are adding left then we add right and then reverse the whole thing
+         * thats the only difference
+         * 
+         * -> Step 1 -> ROOT RIGHT LEFT (after swapping left and right in preorder)
+         * -> Step 2 -> Reverse
+         * -> Step 3 -> LEFT RIGHT ROOT
+         */
         while (!stack1.isEmpty()) {
             root = stack1.pop();
-            stack2.push(root);
+            postOrder.add(root.val);
             if (root.left != null)
                 stack1.push(root.left);
             if (root.right != null)
                 stack1.push(root.right);
 
         }
-
-        while (!stack2.isEmpty())
-            postOrder.add(stack2.pop().val);
-
+        Collections.reverse(postOrder);
         return postOrder;
 
     }

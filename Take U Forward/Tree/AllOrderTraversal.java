@@ -30,44 +30,29 @@ class AllOrderTraversal {
         List<Integer> preOrder = new ArrayList<>();
         List<Integer> inOrder = new ArrayList<>();
         List<Integer> postOrder = new ArrayList<>();
+
         if (root == null)
             return postOrder;
-        Stack<Pair> stack = new Stack<>();
-        stack.push(new Pair(root, 1));
-        // Stack<TreeNode> stack2 = new Stack<>();
 
-        // stack1.push(root);
+        Deque<Pair> deque = new ArrayDeque<>();
+        deque.addLast(new Pair(root, 1));
+        while (!deque.isEmpty()) {
+            Pair currNode = deque.removeLast();
 
-        // while(!stack1.isEmpty()){
-        // root = stack1.pop();
-        // stack2.push(root);
-        // if(root.left != null) stack1.push(root.left);
-        // if(root.right != null) stack1.push(root.right);
-
-        // }
-
-        // while(!stack2.isEmpty()) postOrder.add(stack2.pop().val);
-
-        while (!stack.isEmpty()) {
-            Pair currPair = stack.pop();
-            if (currPair.num == 1) {
-                preOrder.add(currPair.node.val);
-                ++currPair.num;
-                stack.push(currPair);
-                if (currPair.node.left != null)
-                    stack.push(new Pair(currPair.node.left, 1));
-            } else if (currPair.num == 2) {
-                inOrder.add(currPair.node.val);
-                ++currPair.num;
-                stack.push(currPair);
-                if (currPair.node.right != null)
-                    stack.push(new Pair(currPair.node.right, 1));
+            if (currNode.num == 1) {
+                preOrder.add(currNode.node.val);
+                deque.addLast(new Pair(currNode.node, currNode.num + 1));
+                if (currNode.node.left != null)
+                    deque.addLast(new Pair(currNode.node.left, 1));
+            } else if (currNode.num == 2) {
+                inOrder.add(currNode.node.val);
+                deque.addLast(new Pair(currNode.node, currNode.num + 1));
+                if (currNode.node.right != null)
+                    deque.addLast(new Pair(currNode.node.right, 1));
             } else {
-                postOrder.add(currPair.node.val);
+                postOrder.add(currNode.node.val);
             }
         }
-        System.out.println(preOrder);
-        System.out.println(inOrder);
         return postOrder;
     }
 }

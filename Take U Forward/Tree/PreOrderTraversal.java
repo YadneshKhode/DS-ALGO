@@ -60,6 +60,21 @@ public class PreOrderTraversal {
         }
 
         return preOrder;
+    }
 
+    public List<Integer> preorderTraversalImitatingRecursion(TreeNode root) {
+        List<Integer> arr = new ArrayList<>();
+        if (root == null) {
+            return arr;
+        }
+        Deque<TreeNode> deque = new ArrayDeque<>();
+        while (root.left != null) {
+            root = root.left;
+            deque.addLast(root.left);
+        }
+        root = deque.removeLast();
+        arr.add(root.val);
+        root = root.right;
+        return arr;
     }
 }
