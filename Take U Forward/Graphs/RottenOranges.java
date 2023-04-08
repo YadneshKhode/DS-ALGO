@@ -16,6 +16,14 @@ class RottenOranges {
             for (int j = 0; j < m; j++) {
                 // if cell contains rotten orange
                 if (grid[i][j] == 2) {
+                    // the step of adding all rotten oranges to the deque is necessary because these
+                    // oranges will be scattered across the grid and all these oranges will rotten
+                    // their neighbours with distance unit 1 in 1 unit time, so imagine my current
+                    // rotten orange is on top right corner and in unit 1 time it was able to rot
+                    // its neighbours but at the same time some other orange far away on bottom left
+                    // of the grid will ALSO rotten its neighbors at that same instant of time,
+                    // hence when we add 1st all rotten oranges of the grid to the deque it works
+                    // fine.
                     deque.addLast(new Pair(i, j, 0));
                     // mark as visited (rotten) in visited array
                     vis[i][j] = 2;
