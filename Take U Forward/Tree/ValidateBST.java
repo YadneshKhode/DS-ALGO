@@ -4,6 +4,11 @@
 public class ValidateBST {
 
     /*
+     * JUST DO INORDER TRAVERSAL AND MAKE SURE CURRENT NUMBER IS GREATER THAN
+     * PREVIOUS
+     */
+
+    /*
      * 1. We have to use (Long.MIN_VALUE, Long.MAX_VALUE) because of the extreme
      * range of int can also be the value of the node
      */

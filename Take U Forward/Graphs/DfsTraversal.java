@@ -41,10 +41,13 @@ public class DfsTraversal {
             ArrayList<Integer> dfs) {
         Integer currNode = deque.removeFirst();
         vis[currNode] = true;
+        // why add above here and not below because when i recheck if (vis[i] == false)
+        // inside for loop the value of vis[curNode] would be stil false and it would be
+        // considered again
         dfs.add(currNode);
         for (Integer i : adj.get(currNode)) {
             if (vis[i] == false) {
-                vis[i] = true;
+                // vis[i] = true; // why NOT add here
                 deque.addLast(i);
                 dfsOfGraph(v, adj, vis, deque, dfs);
             }

@@ -120,6 +120,7 @@ public class Single_Element_in_Sorted_Array {
              * if mid is even we will automatically check right of mid
              * 
              */
+
             if (nums[mid] == nums[mid ^ 1])
                 low = mid + 1;
             else
@@ -127,5 +128,15 @@ public class Single_Element_in_Sorted_Array {
         }
 
         return nums[low];
+    }
+
+    // If array was not sorted we could just xor whole array and whatever remains is
+    // the answer
+    public int singleNonDuplicate2(int[] nums) {
+        int ans = 0;
+        for (int i = 0; i < nums.length; i++) {
+            ans ^= nums[i];
+        }
+        return ans;
     }
 }
