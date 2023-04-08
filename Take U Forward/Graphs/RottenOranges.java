@@ -34,9 +34,10 @@ class RottenOranges {
             }
         }
 
-        // delta row and delta column
-        int drow[] = { -1, 0, +1, 0 };
-        int dcol[] = { 0, 1, 0, -1 };
+        // delta row and delta column -> it moves anti clock wise starting from below->
+        // right -> top -> left (assume you are in middle then imagine)
+        int drow[] = { -1, 0, +1, 0 }; // {below row, same row, above row, same row}
+        int dcol[] = { 0, 1, 0, -1 }; // {same column, right column, same column, left column}
         int overallRotMax = -1;
 
         while (!deque.isEmpty()) {
