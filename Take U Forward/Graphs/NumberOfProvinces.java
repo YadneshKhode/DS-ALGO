@@ -13,6 +13,9 @@ class NumberOfProvincesBFS {
         /*
          * Initialise whole array as false so wehen we access unvisited node it does
          * not throw null
+         * 
+         * but if we use boolean instead of Boolean then no need to initialise since all
+         * values are by default false
          */
         Arrays.fill(vis, false);
         ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
@@ -24,6 +27,9 @@ class NumberOfProvincesBFS {
             adj.add(new ArrayList<Integer>());
         }
 
+        /*
+         * Important to know the matrix size will be same as number of vertices
+         */
         for (int i = 0; i < v; i++) {
             for (int j = 0; j < v; j++) {
                 if (mat.get(i).get(j) == 1 && i != j) {

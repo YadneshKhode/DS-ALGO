@@ -34,3 +34,59 @@ public class DetectCycle {
         return false;
     }
 }
+
+class Solution {
+    // Function to detect cycle in an undirected graph.
+    private boolean dfs(int node, int parent, int vis[], ArrayList<ArrayList<Integer>> adj) {
+        vis[node] = 1;
+        // go to all adjacent nodes
+        for (int adjacentNode : adj.get(node)) {
+            if (vis[adjacentNode] == 0) {
+                if (dfs(adjacentNode, node, vis, adj) == true)
+                    return true;
+            }
+
+            /*
+             * 
+             * if (vis[adjacentNode] == 0 && (dfs(adjacentNode, node, vis, adj))) {
+             * return true;
+             * }
+             * 
+             * why above code is wrong?
+             * 
+             * vis[adjacentNode] == 0 true zala and dfs(adjacentNode, node, vis, adj)) false
+             * zala ata hya case made hya if cha else run honar .. mhanun code hagnar
+             * 
+             * 
+             * why below code is correct?
+             * if (vis[adjacentNode] == 0) { true zala tar aatla run honar aat made jhata
+             * faraq padat nai kai hotay and hya scenario made hya if cha
+             * "else kadi run nai honar"
+             * 
+             * 
+             * 
+             * if (vis[adjacentNode] == 0) {
+             * if (dfs(adjacentNode, node, vis, adj) == true)
+             * return true;
+             * }
+             * 
+             */
+
+            // if adjacent node is visited and is not its own parent node
+            else if (adjacentNode != parent)
+                return true;
+        }
+        return false;
+    }
+
+    // Function to detect cycle in an undirected graph.
+    public boolean isCycle(int V, ArrayList<ArrayList<Integer>> adj) {
+        int vis[] = new int[V];
+        for (int i = 0; i < V; i++) {
+            if (vis[i] == 0 && dfs(i, -1, vis, adj)) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
