@@ -28,6 +28,47 @@ in the window
 class Solution {
 
     int search(String pat, String txt) {
+        int start = 0, end = 0, counter = 0, result = 0, n = txt.length();
+        Map<Character, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < pat.length(); i++) {
+            map.put(pat.charAt(i), map.getOrDefault(pat.charAt(i), 0) + 1);
+        }
+
+        counter = map.size();
+
+        while (end < n) {
+            char currEndCharacter = txt.charAt(end);
+            if (map.containsKey(currEndCharacter)) {
+                int currCharacterFrequency = map.get(currEndCharacter);
+                map.put(currEndCharacter, currCharacterFrequency - 1);
+                if (currCharacterFrequency - 1 == 0)
+                    counter--;
+            }
+
+            if (end - start + 1 == pat.length()) {
+                if (counter == 0)
+                    result++;
+
+                char currStartCharacter = txt.charAt(start);
+
+                if (map.containsKey(currStartCharacter)) {
+                    int currCharacterFrequency = map.get(currStartCharacter);
+                    map.put(currStartCharacter, currCharacterFrequency + 1);
+                    if (currCharacterFrequency == 0)
+                        counter++;
+                }
+
+                start++;
+            }
+
+            end++;
+
+        }
+        return result;
+    }
+
+    int search2(String pat, String txt) {
         // code here
         int start = 0, end = -1, n = txt.length(), k = pat.length(), result = 0;
         HashMap<Character, Integer> map = new HashMap<>();

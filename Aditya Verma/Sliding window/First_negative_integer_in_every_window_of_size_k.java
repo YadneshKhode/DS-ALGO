@@ -46,48 +46,17 @@ class Compute {
             if (arr[end] < 0) {
                 deque.addLast(arr[end]);
             }
-            if (end - start + 1 < k) {
-                end++;
-            } else if (end - start + 1 == k) {
+            if (end - start + 1 == k) {
                 if (deque.size() == 0)
                     res[x++] = 0;
-                else
+                else {
                     res[x++] = deque.peek();
-                if (deque.size() != 0 && deque.peek() == arr[start])
-                    deque.poll();
-                start++;
-                end++;
-            }
-        }
-        return res;
-    }
-}
-
-// Second approach same logic
-
-class Compute2 {
-
-    public long[] printFirstNegativeInteger(long arr[], int n, int k) {
-        long[] res = new long[n - k + 1];
-        Deque<Long> deque = new ArrayDeque<>();
-        int start = 0, end = -1, index = 0;
-
-        while (end < n) {
-            int size = end - start + 1;
-            if (size < k) {
-                end++;
-                if (end < n && arr[end] < 0)
-                    deque.addLast(arr[end]);
-            } else if (size == k) {
-                if (deque.isEmpty()) {
-                    res[index++] = 0;
-                } else {
-                    res[index++] = deque.peekFirst();
-                    if (arr[start] == deque.peekFirst())
-                        deque.removeFirst();
+                    if (deque.peek() == arr[start])
+                        deque.poll();
                 }
                 start++;
             }
+            end++;
         }
         return res;
     }

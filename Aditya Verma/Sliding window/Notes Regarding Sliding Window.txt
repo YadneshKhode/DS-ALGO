@@ -1,0 +1,8 @@
+Link - https://www.youtube.com/watch?v=EHCGAZBbB88&list=PL_z_8CaSLPWeM8BDJmIYDaoQ5zuwyxnfj
+
+1. Usually the questions would be related to array or string.
+2. Question would usually ask for subarray or substring (since a sliding window is contiguous).
+3. They could ask to find largest window or smallest window subject to a certain condition and they would probably also ask to calculate window size.
+4. Alternatively the question might give the window size as well (we need to deduce what would be the window size from question)
+5. There are 2 types in sliding window fixed sized window and variable size window.
+6. 

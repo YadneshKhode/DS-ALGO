@@ -9,34 +9,33 @@ https://www.interviewbit.com/problems/sliding-window-maximum/
 https://www.youtube.com/watch?v=xFJXtB5vSmM&list=PL_z_8CaSLPWeM8BDJmIYDaoQ5zuwyxnfj&index=6
 */
 
-public class Solution {
+import java.util.*;
+
+public class Sliding_Window_Maximum {
 
     public int[] slidingMaximum(final int[] arr, int k) {
         Deque<Integer> deque = new ArrayDeque<>();
-        int n =  arr.length;
-        int res[] = new int[n-k+1];
-        int start = 0, end = 0,index = 0;
+        int n = arr.length;
+        int res[] = new int[n - k + 1];
+        int start = 0, end = 0, index = 0;
 
-        while(end < n){
-            while(!deque.isEmpty() && deque.peekLast() < arr[end]){
+        while (end < n) {
+            while (!deque.isEmpty() && deque.peekLast() < arr[end]) {
                 deque.removeLast();
             }
             deque.addLast(arr[end]);
 
-            if(end-start+1 < k){
+            if (end - start + 1 < k) {
                 end++;
-            }
-            else{
+            } else {
                 res[index] = deque.peekFirst();
                 index++;
-                if(arr[start] == deque.peekFirst()) deque.removeFirst();
+                if (arr[start] == deque.peekFirst())
+                    deque.removeFirst();
                 start++;
-                end++; 
+                end++;
             }
         }
         return res;
     }
 }
-
-
-

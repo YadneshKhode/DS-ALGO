@@ -1,3 +1,4 @@
+
 /*
 
 https://leetcode.com/problems/longest-substring-without-repeating-characters/
@@ -20,27 +21,27 @@ next character the beginning of our new potential answer ('c' - 2nd index)
 
 
 */
+import java.util.*;
 
 class Solution {
     public int lengthOfLongestSubstring(String s) {
-        
+
         int result = 0, start = 0, end = 0;
         Set<Character> set = new HashSet<>();
-     
-        while(end < s.length()){
+
+        while (end < s.length()) {
             char c = s.charAt(end);
-            if(!set.contains(c)){
+            if (!set.contains(c)) {
                 set.add(c);
-                result = Math.max(result,end-start+1);
-            }
-            else{
-                while(s.charAt(start) != c){
+                result = Math.max(result, end - start + 1);
+            } else {
+                while (s.charAt(start) != c) {
                     set.remove(s.charAt(start));
                     start++;
                 }
                 start++;
             }
-              end++;
+            end++;
         }
         return result;
     }
