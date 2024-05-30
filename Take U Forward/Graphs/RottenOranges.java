@@ -110,3 +110,61 @@ class RottenOranges {
         }
     }
 }
+
+
+
+// Below code is latest by yadnesh on 30th May 2024
+
+
+class Solution {
+    public int orangesRotting(int[][] grid) {
+        ArrayDeque<Pair> deque = new ArrayDeque<>();
+        int countOfOne = 0, res = 0;
+        for(int i = 0; i < grid.length; i++){
+            for(int j = 0; j < grid[0].length; j++){
+                if(grid[i][j] == 1) countOfOne++;
+                if(grid[i][j] == 2){
+                    deque.addFirst(new Pair(i,j,0));
+                } 
+            }
+        }
+
+        int drow[] = { -1, 0, +1, 0 }; 
+        int dcol[] = { 0, 1, 0, -1 };
+
+
+        while(!deque.isEmpty()){
+            Pair currNode = deque.removeFirst();
+            for(int i = 0; i < 4; i++){
+                int row = currNode.row + drow[i];
+                int col = currNode.column + dcol[i];
+
+            if(row >= 0 && col >= 0 && row < grid.length && col < grid[0].length && grid[row][col] == 1){
+                int time = currNode.currTime;
+                grid[row][col] = 2;
+                countOfOne--;
+                res = Math.max(res, time + 1);
+                deque.addLast(new Pair(row, col, time + 1));
+            }
+
+            }
+        }
+
+        if(countOfOne > 0) return -1;
+
+        return res;
+
+    }
+}
+
+class Pair {
+    int row;
+    int column;
+    int currTime;
+
+    Pair(int a, int b, int t) {
+        row = a;
+        column = b;
+        currTime = t;
+    }
+}
