@@ -115,3 +115,63 @@ class NumberOfProvincesDFS {
         }
     }
 }
+
+
+// Below code is by yadnesh after 1 year - 30th May 2024
+
+class Solution {
+    // DFS 
+    // public int findCircleNum(int[][] isConnected) {
+    //     int count = 0; 
+    //     boolean[] vis = new boolean[isConnected.length];
+    //     for(int i = 0; i < isConnected.length; i++){ // Iterate over isConnected and call DFS on each unvisited node
+    //         if(vis[i] == false){
+    //             count++; // Each represents a province since this would be the source of each new disconnected graph
+    //             dfs(i, vis, isConnected);
+    //         }
+    //     }
+    //     return count;
+    // }
+
+    // public void dfs(int currNode, boolean[] vis, int[][] isConnected){
+    //     vis[currNode] = true;
+
+    // iterating the columns of the selected row - imagine we added 0 in above loop and called dfs 
+    // now in below loop we are looping through columns of 0th row
+    //     for(int i = 0; i < isConnected[currNode].length; i++){ 
+    //     Check if curr index is unvisited and connected if yes then call DFS here 
+    //         if(isConnected[currNode][i] == 1 && vis[i] == false){
+    //             dfs(i, vis,isConnected);
+    //         }
+    //     }
+    // }
+
+
+
+    // BFS
+
+    public int findCircleNum(int[][] isConnected) {
+        int count = 0;
+        boolean[] vis = new boolean[isConnected.length];
+        ArrayDeque<Integer> deque = new ArrayDeque<>();
+        for(int i = 0; i < isConnected.length; i++){
+            if(vis[i] == false){
+                count++;
+                deque.addFirst(i);
+            }
+
+            while(!deque.isEmpty()){
+                int currNode = deque.removeFirst();
+                vis[currNode] = true;
+                for(int j = 0; j < isConnected[currNode].length; j++){
+                    if(isConnected[currNode][j] == 1 && vis[j] == false){
+                        deque.addFirst(j);
+                    }
+                }
+            }
+        }
+
+
+        return count;
+    }
+}
