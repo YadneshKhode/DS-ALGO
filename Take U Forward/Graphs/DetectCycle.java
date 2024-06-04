@@ -90,3 +90,42 @@ class Solution {
         return false;
     }
 }
+
+
+
+
+// Detect Cycle using BFS without recording parent node - just count no. of time adj node of curr node return true
+// if it is more than equal to 1 then it means there is some other node except parent node that is already visited.
+
+
+class Solution {
+    // Function to detect cycle in an undirected graph.
+    public boolean isCycle(int V, ArrayList<ArrayList<Integer>> adj) {
+        ArrayDeque<Integer> deque = new ArrayDeque<>();
+        boolean[] vis = new boolean[V];
+        
+        for(int i = 0; i < V; i++){
+            if(vis[i] == false){
+                vis[i] = true;
+                deque.addFirst(i);
+            }
+            
+            while(!deque.isEmpty()){
+                int curr = deque.removeFirst();
+                int count = 0;
+                for(int j = 0; j < adj.get(curr).size(); j++){
+                    if(vis[adj.get(curr).get(j)] == false){
+                        deque.addLast(adj.get(curr).get(j));
+                        vis[adj.get(curr).get(j)] = true;
+                    }else{
+                        count++;
+                    }
+                    
+                    if(count > 1) return true;
+                }
+                count++;
+            }
+        }
+         return false;
+    }
+}
